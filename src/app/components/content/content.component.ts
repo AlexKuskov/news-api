@@ -9,7 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class ContentComponent implements OnInit {
 
   apiKey: string = '8eb2b92652744080b60b1fdac0cddbbd';
-  baseUrl: string = 'https://newsapi.org/v2/everything?q=bitcoin&from=2019-07-09&sortBy=publishedAt&apiKey=';
+  //baseUrl: string = 'https://newsapi.org/v2/everything?q=bitcoin&from=2019-07-09&sortBy=publishedAt&apiKey=';
+  baseUrl: string = 'https://newsapi.org/v2/everything?domains=techcrunch.com,nytimes.com&apiKey=';
+
+  topHeadlines: string = 'top-headlines';
+  everything: string = 'everything';
 
   constructor(private http: HttpClient) { }
 
