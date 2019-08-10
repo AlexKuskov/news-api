@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+
 .header {
     position: fixed;
     top: 0;
@@ -8,4 +10,14 @@
     border-bottom-style: solid;
     border-bottom-width: 1px;
     background-color: rgb(255, 255, 255);
+}
+
+.header__logo {
+    font-family: "Bree Serif", serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.header__date {
+    width: 30%;
 }
