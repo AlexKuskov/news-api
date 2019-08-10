@@ -1,3 +1,26 @@
-<div class="content" (click)="getResult()">
-  content
+<div class="content">
+  <div class="content__sorted-by">
+    <label for="sort-select">Sort by:</label>
+
+    <select id="sort-select">
+        <option value="sort-select__published-at">Date</option>
+        <option value="sort-select__popularity">Popularity</option>
+        <option value="sort-select__relevancy">Relevancy</option>
+    </select>
+  </div>
+
+  <div class="news-item">
+    <img class="news-item__image" src="" alt="">
+    <span class="news-item__title">Bitcoin Price Must Sustain $12K Level for Highest Weekly Close in 2019</span>
+    <span class="news-item__description">Three days separate Bitcoin price from its best-ever weekly close of 2019, as markets hover in mid $11,000s</span>
+    <span class="news-item__published-at">2019-08-09T09:37:00Z</span>
+    <span class="news-item__author">Cointelegraph By William Suberg</span>
+    
+    <!-- urlToImage: "https://images.cointelegraph.com/images/740_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS9zdG9yYWdlL3VwbG9hZHMvdmlldy82MmM2ODQ5MzUwYzY1M2VhZmMzMjk4MWIyNDNiMmExOS5qcGc=.jpg"
+      title: "Bitcoin Price Must Sustain $12K Level for Highest Weekly Close in 2019"
+      url: "https://cointelegraph.com/news/bitcoin-price-must-sustain-12k-level-for-highest-weekly-close-in-2019"
+      description: "Three days separate Bitcoin price from its best-ever weekly close of 2019, as markets hover in mid $11,000s"
+      publishedAt: "2019-08-09T09:37:00Z"
+      author: "Cointelegraph By William Suberg" -->
+  </div>
 </div>
