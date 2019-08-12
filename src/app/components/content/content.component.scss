@@ -17,8 +17,14 @@
     margin-right: 6px;
 }
 
+.content__news-item-link {
+    color: initial;
+    text-decoration: none;
+}
+
 .news-item {
     position: relative;
+    height: 100%;
 }
 
 .news-item__image-container {

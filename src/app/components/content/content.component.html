@@ -9,14 +9,16 @@
     </select>
   </div>
 
-  <div class="news-item" *ngFor="let newsItem of response2">
-    <div class="news-item__image-container">
-      <img class="news-item__background-image" [src]="newsItem.urlToImage" alt="news image">
-      <img class="news-item__image" [src]="newsItem.urlToImage" alt="news image">
+  <a class="content__news-item-link" [href]="newsItem.url" *ngFor="let newsItem of response2" target="_blank">
+    <div class="news-item">
+      <div class="news-item__image-container">
+        <img class="news-item__background-image" [src]="newsItem.urlToImage" alt="news image">
+        <img class="news-item__image" [src]="newsItem.urlToImage" alt="news image">
+      </div>
+      <div class="news-item__title">{{ newsItem.title }}</div>
+      <div class="news-item__description">{{ newsItem.description }}</div>
+      <span class="news-item__published-at">{{ newsItem.publishedAt | date:'MMM d, y, h:mm a' }}</span>
+      <span class="news-item__author">{{ newsItem.author }}</span>
     </div>
-    <div class="news-item__title">{{ newsItem.title }}</div>
-    <div class="news-item__description">{{ newsItem.description }}</div>
-    <span class="news-item__published-at">{{ newsItem.publishedAt | date:'MMM d, y, h:mm a' }}</span>
-    <span class="news-item__author">{{ newsItem.author }}</span>
-  </div>
+  </a>
 </div>
