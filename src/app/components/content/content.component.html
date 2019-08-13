@@ -1,6 +1,6 @@
 <div class="content">
   <div class="content__total-news-number-text">
-    Total news number: 999 {{ response.totalResults }}
+    Total news number: {{ response.totalResults }}
   </div>
 
   <div class="content__sorted-by-container">
@@ -14,20 +14,27 @@
   </div>
 
   <a 
-    class="content__news-item-link" 
-    [href]="newsItem.url" 
+    class="content__article-link" 
+    [href]="article.url" 
     target="_blank"
-    *ngFor="let newsItem of response | paginate: config">
-    <div class="news-item">
-      <div class="news-item__image-container">
-        <img class="news-item__background-image" [src]="newsItem.urlToImage" alt="news image">
-        <img class="news-item__image" [src]="newsItem.urlToImage" alt="news image">
+    *ngFor="let article of response.articles | paginate: config">
+    <div class="article">
+      <div class="article__image-container">
+        <img class="article__background-image" [src]="article.urlToImage" alt="news image">
+        <img class="article__image" [src]="article.urlToImage" alt="news image">
       </div>
-      <div class="news-item__title">{{ newsItem.title }}</div>
-      <div class="news-item__description">{{ newsItem.description }}</div>
-      <span class="news-item__published-at">{{ newsItem.publishedAt | date:'MMM d, y, h:mm a' }}</span>
-      <span class="news-item__author">{{ newsItem.author }}</span>
+      <div class="article__title">{{ article.title }}</div>
+      <div class="article__description">{{ article.description }}</div>
+      <span class="article__published-at">{{ article.publishedAt | date:'MMM d, y, h:mm a' }}</span>
+      <span class="article__author">{{ article.author }}</span>
     </div>
   </a>
 </div>
-<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+<div class="pagination-container">
+    <pagination-controls 
+      class="pagination" 
+      (pageChange)="pageChanged($event)"
+      [routerLink]="['/page/', config.currentPage]">
+    </pagination-controls>
+</div>
