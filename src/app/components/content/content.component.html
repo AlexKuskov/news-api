@@ -1,4 +1,8 @@
 <div class="content">
+  <div class="content__total-news-number-text">
+    Total news number: 999 {{ response.totalResults }}
+  </div>
+
   <div class="content__sorted-by-container">
     <label class="content__sorted-by-label" for="sort-select">Sort by:</label>
 
@@ -9,7 +13,11 @@
     </select>
   </div>
 
-  <a class="content__news-item-link" [href]="newsItem.url" *ngFor="let newsItem of response2" target="_blank">
+  <a 
+    class="content__news-item-link" 
+    [href]="newsItem.url" 
+    target="_blank"
+    *ngFor="let newsItem of response | paginate: config">
     <div class="news-item">
       <div class="news-item__image-container">
         <img class="news-item__background-image" [src]="newsItem.urlToImage" alt="news image">
@@ -22,3 +30,4 @@
     </div>
   </a>
 </div>
+<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
