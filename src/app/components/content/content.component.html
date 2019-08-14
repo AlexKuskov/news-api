@@ -25,7 +25,9 @@
       <div class="article__title">{{ article.title }}</div>
       <div class="article__description">{{ article.description }}</div>
       <span class="article__published-at">{{ article.publishedAt | date:'MMM d, y, h:mm a':'GMT+0' }}</span>
-      <span class="article__author">{{ article.author }}</span>
+      <span class="article__author" *ngIf="article.author">
+        {{ (article.author.length > 34) ? (article.author | slice:0:31) + '...' : (article.author)  }}
+      </span>
     </div>
   </a>
 </div>
