@@ -93,3 +93,18 @@
 .pagination::ng-deep .ngx-pagination {
     padding-inline-start: 0;
 }
+
+.not-found-block {
+    margin-top: 100px;
+    min-height: 500px;
+    padding: 50px 30px;
+    text-align: center; 
+}
+
+.not-found-block__text {
+    font-weight: 400;
+}
+
+.not-found-block__term {
+    font-weight: 500;
+}

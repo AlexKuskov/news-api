@@ -1,15 +1,13 @@
 <div class="content">
   <div class="content__total-news-number-text">
-    Total news number: {{ response.totalResults }}
+    Total news number: {{ mainService.response.totalResults }}
   </div>
 
   <div class="content__sorted-by-container">
     <label class="content__sorted-by-label" for="sort-select">Sort by:</label>
 
-    <select id="sort-select">
-        <option value="sort-select__published-at">Date</option>
-        <option value="sort-select__popularity">Popularity</option>
-        <option value="sort-select__relevancy">Relevancy</option>
+    <select id="sort-select" [(ngModel)]="mainService.selectedSortMethod">
+        <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.name }}</option>
     </select>
   </div>
 
@@ -17,11 +15,11 @@
     class="content__article-link" 
     [href]="article.url" 
     target="_blank"
-    *ngFor="let article of response.articles | paginate: config">
+    *ngFor="let article of mainService.response.articles | paginate: config">
     <div class="article">
       <div class="article__image-container">
-        <img class="article__background-image" [src]="article.urlToImage" alt="news image">
-        <img class="article__image" [src]="article.urlToImage" alt="news image">
+        <img class="article__background-image" [src]="article.urlToImage" alt="article image">
+        <img class="article__image" [src]="article.urlToImage" alt="article image">
       </div>
       <div class="article__title">{{ article.title }}</div>
       <div class="article__description">{{ article.description }}</div>
@@ -38,3 +36,10 @@
       [routerLink]="['/page/', config.currentPage]">
     </pagination-controls>
 </div>
+
+<!-- <div class="not-found-block">
+  <h1 class="not-found-block__text">
+    Sorry, there are no results for 
+    <em class="not-found-block__term">{{ mainService.q }}</em> and parameters that were set.
+  </h1>
+</div> -->

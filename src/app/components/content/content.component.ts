@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Config } from 'src/app/models/config';
 import { ActivatedRoute } from '@angular/router';
+import { MainService } from 'src/app/services/main.service';
+import { Option } from 'src/app/models/option';
 
 @Component({
   selector: 'app-content',
@@ -10,33 +11,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ContentComponent implements OnInit {
 
-  p: number = 1;
   config: Config = { 
     itemsPerPage: 20,
-    currentPage: this.p,
-    totalItems: 200 
-  }; 
-  response: Response = new Response();
+    currentPage: 1,
+    totalItems: 100 // set this number due to the restriction of current API plan
+  };
 
-  apiKey: string = 'faf3ae3e883e44fd922e5bf2f9522b50';
-  baseUrl: string = 'https://newsapi.org/v2/everything?q=bitcoin&apiKey='; //&from=2019-07-09&sortBy=publishedAt
-  //baseUrl: string = 'https://newsapi.org/v2/everything?language=en&domains=techcrunch.com,nytimes.com&apiKey=';
+  sortOptions: Option[] = [
+    { name: "Date", value: 'publishedAt' },
+    { name: "Popularity", value: 'popularity' },
+    { name: "Relevancy", value: 'relevancy' },
+  ];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, public mainService: MainService) { }
 
   ngOnInit() {
     this.pageChanged(this.route.snapshot.paramMap.get('number'));
-    this.getResult();
-  }
-
-  getResult() {
-    this.http.get<Response>(this.baseUrl + this.apiKey).subscribe(response => {
-      this.response = response;
-    });
+    this.mainService.getResult();
   }
 
   pageChanged(event: any) {
     this.config.currentPage = event;
   }
-
 }

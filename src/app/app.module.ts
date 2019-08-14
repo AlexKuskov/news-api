@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -20,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     DateRangePickerModule,
     NgxPaginationModule,
     AppRoutingModule

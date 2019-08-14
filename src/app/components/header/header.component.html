@@ -3,19 +3,20 @@
     News API
   </div>
 
-  <form class="header__search-form">
+  <form class="header__search-form" (submit)="onSubmit()" #searchForm="ngForm">
     <input 
       type="text" 
       name="query" 
       id="query" 
       placeholder="Type word or phrase"
+      [ngModel]="mainService.q"
       autocomplete="off" 
       maxlength="100" 
       autocapitalize="none" 
       class="header__search-bar"
       required>
 
-    <button class="header__search-button" type="submit">
+    <button class="header__search-button" type="submit" [disabled]="!searchForm.valid">
       <svg enable-background="new 0 0 22 22" height="20" viewBox="-0.5 -0.5 22 22"
         width="30" xmlns="http://www.w3.org/2000/svg">
         <path d="m21.8 19.6l-4.5-4.5c2.7-3.7 2.3-8.9-1-12.3-3.7-3.7-9.8-3.7-13.5 0-3.7 3.7-3.7 
@@ -31,18 +32,14 @@
         id="date-range-picker"
         format ="dd.MM.yyyy" 
         placeholder="News date range"
+        [(ngModel)]='mainService.date'
         [min]='minDate'
         [max]='maxDate'></ejs-daterangepicker>
   </div>
 
   <div class="header__language">
-    <select id="language-select">
-        <option value="language-select__placeholder">News language</option>
-        <option value="language-select__en">English</option>
-        <option value="language-select__ru">Russian</option>
-        <option value="language-select__fr">French</option>
-        <option value="language-select__es">Spanish</option>
-        <option value="language-select__de">German</option>
+    <select id="language-select" [(ngModel)]="mainService.selectedLanguage">
+        <option *ngFor="let option of languageOptions" [value]="option.value">{{ option.name }}</option>
     </select>
   </div>
 </header>
