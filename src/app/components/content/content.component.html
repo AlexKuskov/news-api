@@ -19,8 +19,13 @@
     *ngFor="let article of mainService.response.articles | paginate: config">
     <div class="article">
       <div class="article__image-container">
-        <img class="article__background-image" [src]="article.urlToImage" alt="article image">
-        <img class="article__image" [src]="article.urlToImage" alt="article image">
+        <img class="article__background-image"*ngIf="article.urlToImage"
+             [src]="article.urlToImage" alt="article image">
+        <img class="article__image" *ngIf="article.urlToImage; else localImage"
+             [src]="article.urlToImage" alt="article image">
+        <ng-template #localImage>
+          <img class="article__image" src="assets/news-icon.jpg" alt="article image">
+        </ng-template>
       </div>
       <div class="article__title">{{ article.title }}</div>
       <div class="article__description">{{ article.description }}</div>
