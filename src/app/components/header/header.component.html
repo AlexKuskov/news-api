@@ -27,8 +27,12 @@
   </form>
 
   <div class="header__date">
-    <ejs-daterangepicker id="date-range-picker"
-        format ="dd.MM.yyyy" placeholder="News date range"></ejs-daterangepicker>
+    <ejs-daterangepicker
+        id="date-range-picker"
+        format ="dd.MM.yyyy" 
+        placeholder="News date range"
+        [min]='minDate'
+        [max]='maxDate'></ejs-daterangepicker>
   </div>
 
   <div class="header__language">

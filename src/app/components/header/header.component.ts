@@ -12,4 +12,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  maxDate: Date = new Date();
+  minDate: Date = new Date(this.maxDate.getFullYear(),  this.maxDate.getMonth() - 1, this.maxDate.getDate());
 }
