@@ -108,3 +108,27 @@
 .not-found-block__term {
     font-weight: 500;
 }
+
+.container {
+    height: 500px;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.container__spinner {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    margin-top: 100px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top: 5px solid rgb(0, 0, 0);
+	animation: spinner2 700ms linear infinite;
+}
+@keyframes spinner2 {
+	to {
+		transform: rotate(360deg);
+	}
+}

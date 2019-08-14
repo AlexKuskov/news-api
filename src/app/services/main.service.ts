@@ -9,6 +9,7 @@ import { Response } from '../models/response';
 export class MainService {
  
   response: Response = new Response();
+  isResultReturned: boolean = false;
 
   queryParameter: string = '&q=';
   languageParameter: string = 'language=';
@@ -49,10 +50,12 @@ export class MainService {
     this.customUrl = this.baseUrl + this.parameters;
     this.http.get<Response>(this.customUrl).subscribe(response => {
       this.response = response;
+      this.isResultReturned = true;
     });
   }
 
   updateParameters() {
+    this.isResultReturned = false;
     this.parameters = this.languageParameter + this.selectedLanguage +
                       this.sortByParameter + this.selectedSortMethod +
                       this.pageParameter + this.currentPage +

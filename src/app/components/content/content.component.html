@@ -1,58 +1,65 @@
-<ng-template [ngIf]="mainService.response.totalResults" [ngIfElse]="articlesNotFound">
-  <div class="content">
-    <div class="content__total-news-number-text">
-      Total news number: {{ mainService.response.totalResults }}
-    </div>
-
-    <div class="content__sorted-by-container">
-      <label class="content__sorted-by-label" for="sort-select">Sort by:</label>
-
-      <select id="sort-select" 
-              [(ngModel)]="mainService.selectedSortMethod" (ngModelChange)="mainService.updateParameters()">
-          <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.name }}</option>
-      </select>
-    </div>
-
-    <a 
-      class="content__article-link" 
-      [href]="article.url" 
-      target="_blank"
-      *ngFor="let article of mainService.response.articles | paginate: config">
-      <div class="article">
-        <div class="article__image-container">
-          <img class="article__background-image"*ngIf="article.urlToImage"
-              [src]="article.urlToImage" alt="article image">
-          <img class="article__image" *ngIf="article.urlToImage; else localImage"
-              [src]="article.urlToImage" alt="article image">
-          <ng-template #localImage>
-            <img class="article__image" src="assets/news-icon.jpg" alt="article image">
-          </ng-template>
-        </div>
-        <div class="article__title">{{ article.title }}</div>
-        <div class="article__description">{{ article.description }}</div>
-        <span class="article__published-at">{{ article.publishedAt | date:'MMM d, y, h:mm a':'GMT+0' }}</span>
-        <span class="article__author" *ngIf="article.author">
-          {{ (article.author.length > 34) ? (article.author | slice:0:31) + '...' : (article.author)  }}
-        </span>
+<ng-template [ngIf]="mainService.isResultReturned" [ngIfElse]="loadSpinner">
+  <ng-template [ngIf]="mainService.response.totalResults" [ngIfElse]="articlesNotFound">
+    <div class="content">
+      <div class="content__total-news-number-text">
+        Total news number: {{ mainService.response.totalResults }}
       </div>
-    </a>
-  </div>
 
-  <div class="pagination-container">
-      <pagination-controls 
-        class="pagination" 
-        (pageChange)="pageChanged($event)"
-        [routerLink]="['/page/', config.currentPage]">
-      </pagination-controls>
-  </div>
+      <div class="content__sorted-by-container">
+        <label class="content__sorted-by-label" for="sort-select">Sort by:</label>
+
+        <select id="sort-select" 
+                [(ngModel)]="mainService.selectedSortMethod" (ngModelChange)="mainService.updateParameters()">
+            <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.name }}</option>
+        </select>
+      </div>
+
+      <a 
+        class="content__article-link" 
+        [href]="article.url" 
+        target="_blank"
+        *ngFor="let article of mainService.response.articles | paginate: config">
+        <div class="article">
+          <div class="article__image-container">
+            <img class="article__background-image"*ngIf="article.urlToImage"
+                [src]="article.urlToImage" alt="article image">
+            <img class="article__image" *ngIf="article.urlToImage; else localImage"
+                [src]="article.urlToImage" alt="article image">
+            <ng-template #localImage>
+              <img class="article__image" src="assets/news-icon.jpg" alt="article image">
+            </ng-template>
+          </div>
+          <div class="article__title">{{ article.title }}</div>
+          <div class="article__description">{{ article.description }}</div>
+          <span class="article__published-at">{{ article.publishedAt | date:'MMM d, y, h:mm a':'GMT+0' }}</span>
+          <span class="article__author" *ngIf="article.author">
+            {{ (article.author.length > 34) ? (article.author | slice:0:31) + '...' : (article.author)  }}
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <div class="pagination-container">
+        <pagination-controls 
+          class="pagination" 
+          (pageChange)="pageChanged($event)"
+          [routerLink]="['/page/', config.currentPage]">
+        </pagination-controls>
+    </div>
+  </ng-template>
+
+  <ng-template #articlesNotFound>
+    <div class="not-found-block">
+      <h1 class="not-found-block__text">
+        Sorry, there are no results for 
+        <em class="not-found-block__term">{{ mainService.q }}</em> and parameters that were set.
+      </h1>
+    </div>
+  </ng-template>
 </ng-template>
 
-<ng-template #articlesNotFound>
-  <div class="not-found-block">
-    <h1 class="not-found-block__text">
-      Sorry, there are no results for 
-      <em class="not-found-block__term">{{ mainService.q }}</em> and parameters that were set.
-    </h1>
+<ng-template #loadSpinner>
+  <div class="container">
+    <div class="container__spinner"></div>
   </div>
 </ng-template>
-
