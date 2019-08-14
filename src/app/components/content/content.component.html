@@ -6,7 +6,8 @@
   <div class="content__sorted-by-container">
     <label class="content__sorted-by-label" for="sort-select">Sort by:</label>
 
-    <select id="sort-select" [(ngModel)]="mainService.selectedSortMethod">
+    <select id="sort-select" 
+            [(ngModel)]="mainService.selectedSortMethod" (ngModelChange)="mainService.updateParameters()">
         <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.name }}</option>
     </select>
   </div>
@@ -23,7 +24,7 @@
       </div>
       <div class="article__title">{{ article.title }}</div>
       <div class="article__description">{{ article.description }}</div>
-      <span class="article__published-at">{{ article.publishedAt | date:'MMM d, y, h:mm a' }}</span>
+      <span class="article__published-at">{{ article.publishedAt | date:'MMM d, y, h:mm a':'GMT+0' }}</span>
       <span class="article__author">{{ article.author }}</span>
     </div>
   </a>

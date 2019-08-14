@@ -33,12 +33,14 @@
         format ="dd.MM.yyyy" 
         placeholder="News date range"
         [(ngModel)]='mainService.date'
+        (ngModelChange)="mainService.updateParameters()"
         [min]='minDate'
         [max]='maxDate'></ejs-daterangepicker>
   </div>
 
   <div class="header__language">
-    <select id="language-select" [(ngModel)]="mainService.selectedLanguage">
+    <select id="language-select" 
+            [(ngModel)]="mainService.selectedLanguage" (ngModelChange)="mainService.updateParameters()">
         <option *ngFor="let option of languageOptions" [value]="option.value">{{ option.name }}</option>
     </select>
   </div>

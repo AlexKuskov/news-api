@@ -30,5 +30,6 @@ export class HeaderComponent implements OnInit {
 
   onSubmit(): void {
     this.mainService.q = this.searchForm.form.value.query;
+    this.mainService.updateParameters();
   }
 }

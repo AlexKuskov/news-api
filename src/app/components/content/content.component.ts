@@ -27,10 +27,12 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.pageChanged(this.route.snapshot.paramMap.get('number'));
-    this.mainService.getResult();
   }
 
   pageChanged(event: any) {
+    if (!event) event = 1;
     this.config.currentPage = event;
+    this.mainService.currentPage = event;
+    this.mainService.updateParameters();
   }
 }
