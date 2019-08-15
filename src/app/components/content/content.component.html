@@ -51,7 +51,10 @@
     <div class="not-found-block">
       <h1 class="not-found-block__text">
         Sorry, there are no results for 
-        <em class="not-found-block__term">{{ mainService.q }}</em> and parameters that were set.
+        <ng-template [ngIf]="mainService.q">
+          <em class="not-found-block__term">{{ mainService.q }}</em> and
+        </ng-template>
+        parameters that were set.
       </h1>
     </div>
   </ng-template>

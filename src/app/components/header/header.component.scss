@@ -8,11 +8,11 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: var(--global--height);
     border-color: rgba(0,0,0,.1);
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--global--color--primary);
     z-index: 1;
 }
 
