@@ -42,8 +42,7 @@
     <div class="pagination-container">
         <pagination-controls 
           class="pagination" 
-          (pageChange)="pageChanged($event)"
-          [routerLink]="['/page/', mainService.config.currentPage]">
+          (pageChange)="pageChanged($event)">
         </pagination-controls>
     </div>
   </ng-template>

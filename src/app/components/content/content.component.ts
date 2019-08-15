@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'src/app/services/main.service';
 import { Option } from 'src/app/models/option';
 
@@ -16,7 +16,7 @@ export class ContentComponent implements OnInit {
     { name: "Relevancy", value: 'relevancy' },
   ];
 
-  constructor(private route: ActivatedRoute, public mainService: MainService) { }
+  constructor(private route: ActivatedRoute, private router: Router, public mainService: MainService) { }
 
   ngOnInit() {
     this.pageChanged(this.route.snapshot.paramMap.get('number'));
@@ -26,6 +26,8 @@ export class ContentComponent implements OnInit {
     if (!event) event = 1;
     this.mainService.config.currentPage = event;
     this.mainService.currentPage = event;
+    this.router.navigate(['/page/', event]);
+
     this.mainService.updateParameters();
   }
 }
