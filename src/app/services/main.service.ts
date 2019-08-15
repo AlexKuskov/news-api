@@ -2,12 +2,19 @@ import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '../models/response';
+import { Config } from '../models/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
  
+  config: Config = { 
+    itemsPerPage: 20,
+    currentPage: 1,
+    totalItems: 100 // set this number due to the restriction of current API plan
+  };
+  
   response: Response = new Response();
   isResultReturned: boolean = false;
 
@@ -51,6 +58,8 @@ export class MainService {
     this.http.get<Response>(this.customUrl).subscribe(response => {
       this.response = response;
       this.isResultReturned = true;
+
+      this.config.totalItems = response.totalResults < 100 ? response.totalResults : 100;
     });
   }
 

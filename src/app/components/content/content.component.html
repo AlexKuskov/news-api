@@ -18,7 +18,7 @@
         class="content__article-link" 
         [href]="article.url" 
         target="_blank"
-        *ngFor="let article of mainService.response.articles | paginate: config">
+        *ngFor="let article of mainService.response.articles | paginate: mainService.config">
         <div class="article">
           <div class="article__image-container">
             <img class="article__background-image"*ngIf="article.urlToImage"
@@ -43,7 +43,7 @@
         <pagination-controls 
           class="pagination" 
           (pageChange)="pageChanged($event)"
-          [routerLink]="['/page/', config.currentPage]">
+          [routerLink]="['/page/', mainService.config.currentPage]">
         </pagination-controls>
     </div>
   </ng-template>
